@@ -73,13 +73,28 @@ export class MyScene extends CGFscene {
         // Check for key codes e.g. in https://keycode.info/
         if (this.gui.isKeyPressed("KeyW")) {
                 text+=" W ";
+                this.movingObject.accelerate(0.2);
                 keysPressed=true;
         }
         if (this.gui.isKeyPressed("KeyS")) {
                 text+=" S ";
+                this.movingObject.accelerate(-0.2);
                 keysPressed=true;
         }
-        if (keysPressed) console.log(text);
+        if (this.gui.isKeyPressed("KeyA")) {
+            text+=" A ";
+            this.movingObject.turn(Math.PI);
+            keysPressed=true;
+        }
+        if (this.gui.isKeyPressed("KeyD")) {
+            text+=" D ";
+            this.movingObject.turn(-Math.PI);
+            keysPressed=true;
+        }
+        if (keysPressed) {
+            console.log(text);
+            this.movingObject.update();
+        }
     }
 
     // called periodically (as per setUpdatePeriod() in init())
