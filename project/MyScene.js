@@ -91,6 +91,11 @@ export class MyScene extends CGFscene {
             this.movingObject.turn(-0.5);
             keysPressed=true;
         }
+        if (this.gui.isKeyPressed("KeyR")) {
+            text+=" R ";
+            this.movingObject.reset();
+            keysPressed=true;
+        }
         if (keysPressed) {
             console.log(text);
             this.movingObject.update();
