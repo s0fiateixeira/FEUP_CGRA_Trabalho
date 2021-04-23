@@ -48,7 +48,6 @@ export class MyMovingObject extends CGFobject {
 	/*Updates the position according to orientation and velocity values*/
 	update(){
 		this.position.x += this.velocity * Math.sin(this.orientation);
-		//this.position.y += this.velocity;
 		this.position.z += this.velocity * Math.cos(this.orientation);
 	}
 
