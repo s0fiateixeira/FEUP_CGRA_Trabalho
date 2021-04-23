@@ -83,12 +83,12 @@ export class MyScene extends CGFscene {
         }
         if (this.gui.isKeyPressed("KeyA")) {
             text+=" A ";
-            this.movingObject.turn(Math.PI);
+            this.movingObject.turn(0.5);
             keysPressed=true;
         }
         if (this.gui.isKeyPressed("KeyD")) {
             text+=" D ";
-            this.movingObject.turn(-Math.PI);
+            this.movingObject.turn(-0.5);
             keysPressed=true;
         }
         if (keysPressed) {
