@@ -77,8 +77,7 @@ export class MyCubeMap {
         // front face
         this.scene.quadMaterial.apply();
         this.frontTexture.apply();
-        this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
-
+        
         this.scene.pushMatrix();
         this.scene.translate(0,0,0.5);
         this.MyQuad.display();
@@ -87,8 +86,7 @@ export class MyCubeMap {
         // back face
         this.scene.quadMaterial.apply();
         this.backTexture.apply();
-        this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
-
+        
         this.scene.pushMatrix();
         this.scene.rotate(Math.PI,0,1,0);
         this.scene.translate(0,0,0.5);
@@ -98,8 +96,7 @@ export class MyCubeMap {
         // right face
         this.scene.quadMaterial.apply();
         this.rightTexture.apply();
-        this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
-
+        
         this.scene.pushMatrix();
         this.scene.rotate(Math.PI/2,0,1,0);
         this.scene.translate(0,0,0.5);
@@ -109,8 +106,7 @@ export class MyCubeMap {
         // left face
         this.scene.quadMaterial.apply();
         this.leftTexture.apply();
-        this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
-
+        
         this.scene.pushMatrix();
         this.scene.rotate(-Math.PI/2,0,1,0);
         this.scene.translate(0,0,0.5);
@@ -120,8 +116,7 @@ export class MyCubeMap {
         // top face
         this.scene.quadMaterial.apply();
         this.topTexture.apply();
-        this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
-
+        
         this.scene.pushMatrix();
         this.scene.rotate(-Math.PI/2,1,0,0);
         this.scene.translate(0,0,0.5);
@@ -131,8 +126,7 @@ export class MyCubeMap {
         // bottom face
         this.scene.quadMaterial.apply();
         this.bottomTexture.apply();
-        this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
-
+        
         this.scene.pushMatrix();
         this.scene.rotate(Math.PI/2,1,0,0);
         this.scene.translate(0,0,0.5);
@@ -140,4 +134,3 @@ export class MyCubeMap {
         this.scene.popMatrix();
     }
 }
-

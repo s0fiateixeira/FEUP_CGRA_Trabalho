@@ -76,4 +76,3 @@ export class MyMovingObject extends CGFobject {
 		this.scene.popMatrix();
 	}
 }
-
