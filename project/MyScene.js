@@ -50,6 +50,9 @@ export class MyScene extends CGFscene {
 
         //Objects connected to MyInterface
         this.displayAxis = true;
+        this.showSphere = false;
+        this.showAmbient = true;
+        this.showMyMovingObject = true;
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -125,15 +128,24 @@ export class MyScene extends CGFscene {
         // Draw axis
         if (this.displayAxis)
             this.axis.display();
-
-        //this.movingObject.display();
-        this.cubeMap.display();
-
-        this.sphereAppearance.apply();
+        
         // ---- BEGIN Primitive drawing section
 
+        // Draw Moving Object
+        if (this.showMyMovingObject)
+            this.movingObject.display();
+
+        // Draw Ambient
+        this.pushMatrix();
+        this.scale(50, 50, 50);
+        if (this.showAmbient)
+            this.cubeMap.display();
+        this.popMatrix();
+
+        this.sphereAppearance.apply();
         //This sphere does not have defined texture coordinates
-        //this.incompleteSphere.display();
+        if (this.showSphere)
+            this.incompleteSphere.display();
 
         // ---- END Primitive drawing section
     }
