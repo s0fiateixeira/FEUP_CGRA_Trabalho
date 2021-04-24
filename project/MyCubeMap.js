@@ -11,8 +11,18 @@ export class MyCubeMap {
     constructor(scene) {
         this.scene = scene;
         this.MyQuad = new MyQuad(this.scene);
+        this.initMaterials(this.scene);
         this.initTexture(this.scene);
 	}
+
+    initMaterials() {
+        this.scene.quadMaterial = new CGFappearance(this.scene);
+        this.scene.quadMaterial.setAmbient(0, 0, 0, 1);
+        this.scene.quadMaterial.setDiffuse(0, 0, 0, 1);
+        this.scene.quadMaterial.setSpecular(0, 0, 0, 1);
+        this.scene.quadMaterial.setShininess(100.0);
+	}
+
     initTexture(){
         this.topTexture = new CGFappearance(this.scene);
         this.topTexture.setAmbient(0.1, 0.1, 0.1, 1);
@@ -65,6 +75,7 @@ export class MyCubeMap {
     display(){
 
         // front face
+        this.scene.quadMaterial.apply();
         this.frontTexture.apply();
         this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
 
@@ -74,6 +85,7 @@ export class MyCubeMap {
         this.scene.popMatrix();
 
         // back face
+        this.scene.quadMaterial.apply();
         this.backTexture.apply();
         this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
 
@@ -84,6 +96,7 @@ export class MyCubeMap {
         this.scene.popMatrix();
 
         // right face
+        this.scene.quadMaterial.apply();
         this.rightTexture.apply();
         this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
 
@@ -94,6 +107,7 @@ export class MyCubeMap {
         this.scene.popMatrix();
 
         // left face
+        this.scene.quadMaterial.apply();
         this.leftTexture.apply();
         this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
 
@@ -104,6 +118,7 @@ export class MyCubeMap {
         this.scene.popMatrix();
 
         // top face
+        this.scene.quadMaterial.apply();
         this.topTexture.apply();
         this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
 
@@ -114,6 +129,7 @@ export class MyCubeMap {
         this.scene.popMatrix();
 
         // bottom face
+        this.scene.quadMaterial.apply();
         this.bottomTexture.apply();
         this.scene.gl.texParameteri(this.scene.gl.TEXTURE_2D, this.scene.gl.TEXTURE_MAG_FILTER, this.scene.gl.NEAREST);
 
