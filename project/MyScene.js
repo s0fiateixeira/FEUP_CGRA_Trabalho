@@ -47,12 +47,19 @@ export class MyScene extends CGFscene {
 		this.sphereAppearance.setSpecular(0.0, 0.0, 0.0, 1);
 		this.sphereAppearance.setShininess(120);
 
-
         //Objects connected to MyInterface
         this.displayAxis = true;
+        this.selectedTexture = 0;
         this.showSphere = false;
         this.showAmbient = true;
         this.showMyMovingObject = true;
+
+        this.textureList = {
+			'Demo Texture': 0,
+			'Test Texture': 1
+        }
+
+        this.selectedTextureChanged(this.selectedTexture);
     }
     initLights() {
         this.lights[0].setPosition(15, 2, 5, 1);
@@ -70,6 +77,10 @@ export class MyScene extends CGFscene {
         this.setSpecular(0.2, 0.4, 0.8, 1.0);
         this.setEmission(0,0,0,1);
         this.setShininess(10.0);
+    }
+
+    selectedTextureChanged(selectedTexture){
+        this.cubeMap.selectedTextureChanged(selectedTexture);
     }
 
     checkKeys()  {

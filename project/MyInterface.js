@@ -23,7 +23,8 @@ export class MyInterface extends CGFinterface {
         this.gui.add(this.scene, 'showSphere').name('Show Sphere');
         this.gui.add(this.scene, 'showAmbient').name('Show Ambient');
         this.gui.add(this.scene, 'showMyMovingObject').name('Show Object');
-        
+        //Dropdown for textures
+        this.gui.add(this.scene, 'selectedTexture', this.scene.textureList).name('Selected Texture').onChange(this.scene.selectedTextureChanged.bind(this.scene));
         
         this.initKeys();
         return true;
