@@ -142,16 +142,17 @@ export class MyScene extends CGFscene {
         
         // ---- BEGIN Primitive drawing section
 
-        // Draw Moving Object
-        if (this.showMyMovingObject)
-            this.movingObject.display();
-
         // Draw Ambient
         this.pushMatrix();
-        this.scale(50, 50, 50);
+        this.translate(this.camera.position[0], this.camera.position[1], this.camera.position[2]);
+        this.scale(500, 500, 500);
         if (this.showAmbient)
             this.cubeMap.display();
         this.popMatrix();
+
+        // Draw Moving Object
+        if (this.showMyMovingObject)
+            this.movingObject.display();
 
         this.sphereAppearance.apply();
         //This sphere does not have defined texture coordinates
