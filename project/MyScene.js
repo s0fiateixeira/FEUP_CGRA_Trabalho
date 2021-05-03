@@ -2,6 +2,7 @@ import { CGFscene, CGFcamera, CGFaxis, CGFappearance } from "../lib/CGF.js";
 import { MySphere } from "./MySphere.js";
 import { MyMovingObject } from "./MyMovingObject.js";
 import { MyCubeMap } from "./MyCubeMap.js";
+import { MyCylinder } from "./MyCylinder.js";
 
 /**
 * MyScene
@@ -33,6 +34,7 @@ export class MyScene extends CGFscene {
         this.incompleteSphere = new MySphere(this, 16, 8);
         this.movingObject = new MyMovingObject(this, 3, 3);
         this.cubeMap = new MyCubeMap(this);
+        this.cylinder = new MyCylinder(this, 6);
 
         this.defaultAppearance = new CGFappearance(this);
 		this.defaultAppearance.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -52,7 +54,8 @@ export class MyScene extends CGFscene {
         this.selectedTexture = 0;
         this.showSphere = false;
         this.showAmbient = true;
-        this.showMyMovingObject = true;
+        this.showMyMovingObject = false;
+        this.showCylinder = true;
 
         this.textureList = {
 			'Demo Texture': 0,
@@ -153,6 +156,10 @@ export class MyScene extends CGFscene {
         // Draw Moving Object
         if (this.showMyMovingObject)
             this.movingObject.display();
+
+        // Draw Cylinder
+        if (this.showCylinder)
+            this.cylinder.display();
 
         this.sphereAppearance.apply();
         //This sphere does not have defined texture coordinates
