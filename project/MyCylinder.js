@@ -45,14 +45,18 @@ export class MyCylinder extends CGFobject {
             this.normals.push(Math.cos(ang), -Math.cos(Math.PI/4.0), -Math.sin(ang));
             ang+=alphaAng;
         }
-/*
+
         // side faces
         for (var i = 0; i < this.slices; i++){
-            this.indices.push(this.slices, (i+1) % (this.slices), i);
-            //this.indices.push(this.slices, (i+1) % (this.slices), i);
+            if (i == this.slices - 1) {
+                this.indices.push(this.slices*2+1, this.slices+2, 1);
+                this.indices.push(1, this.slices, this.slices*2+1);
+            }else {
+                this.indices.push(i+2, i+1, (this.slices + 2) + i);
+                this.indices.push((this.slices + 2) + i, (this.slices + 2) + i + 1, i+2);
+            }
             ang+=alphaAng;
         }
-*/
 
         this.primitiveType = this.scene.gl.TRIANGLES;
         this.initGLBuffers();
