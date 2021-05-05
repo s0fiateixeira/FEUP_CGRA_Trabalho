@@ -35,8 +35,7 @@ export class MyCylinder extends CGFobject {
         this.vertices.push(Math.cos(ang), 1, -Math.sin(ang));
         this.normals.push(Math.cos(ang), 0, -Math.sin(ang));
         this.normals.push(Math.cos(ang), 0, -Math.sin(ang));
-        ang += alphaAng;
-        var iterator = 1;    
+        ang += alphaAng;  
         for (var i = 0; i < this.slices; i++){
             
             this.vertices.push(Math.cos(ang), 0, -Math.sin(ang));
@@ -47,15 +46,9 @@ export class MyCylinder extends CGFobject {
 
             this.normals.push(Math.cos(ang), 0, -Math.sin(ang));
             this.normals.push(Math.cos(ang), 0, -Math.sin(ang));
-            
-
-            this.textureCoords.push(0, (1/this.slices)*i);
-            this.textureCoords.push(1, 0);
-            this.cylinderTexture.apply();
-
             ang+=alphaAng;
         }
-
+        
         this.primitiveType = this.scene.gl.TRIANGLES;
         this.initGLBuffers();
     }
