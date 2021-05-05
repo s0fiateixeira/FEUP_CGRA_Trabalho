@@ -30,15 +30,20 @@ export class MyCylinder extends CGFobject {
         var ang = 0;
         var alphaAng = 2*Math.PI/this.slices;
 
+        //first two vertices, they need to be repeated afterwards inside the cicle
         this.vertices.push(Math.cos(ang), 0, -Math.sin(ang));
         this.vertices.push(Math.cos(ang), 1, -Math.sin(ang));
-        ang += alphaAng;    
-        for (var i = 0; i < this.slices * 2; i++){
+        this.normals.push(Math.cos(ang), 0, -Math.sin(ang));
+        this.normals.push(Math.cos(ang), 0, -Math.sin(ang));
+        ang += alphaAng;
+        var iterator = 1;    
+        for (var i = 0; i < this.slices; i++){
+            
             this.vertices.push(Math.cos(ang), 0, -Math.sin(ang));
             this.vertices.push(Math.cos(ang), 1, -Math.sin(ang));
             
-            this.indices.push(i, i+1, i+2);
-            this.indices.push(i, i+2, i+1);
+            this.indices.push((i*2)+2, (i*2)+1, (i*2));
+            this.indices.push((i*2)+2, (i*2)+3, (i*2)+1);
 
             this.normals.push(Math.cos(ang), 0, -Math.sin(ang));
             this.normals.push(Math.cos(ang), 0, -Math.sin(ang));
