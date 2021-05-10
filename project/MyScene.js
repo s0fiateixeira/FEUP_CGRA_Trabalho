@@ -1,4 +1,4 @@
-import { CGFscene, CGFcamera, CGFaxis, CGFappearance } from "../lib/CGF.js";
+import { CGFscene, CGFcamera, CGFaxis, CGFappearance, CGFtexture } from "../lib/CGF.js";
 import { MySphere } from "./MySphere.js";
 import { MyMovingObject } from "./MyMovingObject.js";
 import { MyCubeMap } from "./MyCubeMap.js";
@@ -158,8 +158,11 @@ export class MyScene extends CGFscene {
             this.movingObject.display();
 
         // Draw Cylinder
-        if (this.showCylinder)
+        if (this.showCylinder){
+            this.cylinder.cylinderTexture.apply();
+            //this.cylinder.enableNormalViz();
             this.cylinder.display();
+        }
 
         this.sphereAppearance.apply();
         //This sphere does not have defined texture coordinates

@@ -9,8 +9,8 @@ export class MyCylinder extends CGFobject {
     constructor(scene, slices) {
         super(scene);
         this.slices = slices;
-        this.initTexture(this.scene);
-        this.initBuffers(this.scene);
+        this.initTexture();
+        this.initBuffers();
     }
     initTexture() {
         //------ Texture
@@ -26,27 +26,29 @@ export class MyCylinder extends CGFobject {
         this.vertices = [];
         this.indices = [];
         this.normals = [];
-        this.textureCoords = [];
-        var ang = 0;
-        var alphaAng = 2*Math.PI/this.slices;
+        this.texCoords = [];
 
-        //first two vertices, they need to be repeated afterwards inside the cicle
-        this.vertices.push(Math.cos(ang), 0, -Math.sin(ang));
-        this.vertices.push(Math.cos(ang), 1, -Math.sin(ang));
-        this.normals.push(Math.cos(ang), 0, -Math.sin(ang));
-        this.normals.push(Math.cos(ang), 0, -Math.sin(ang));
-        ang += alphaAng;  
-        for (var i = 0; i < this.slices; i++){
+        var angle = 0;
+        var alphaAngle = 2 * Math.PI/this.slices;
+        
+        var mapTexture = 0;
+        var alphaMapTexture = 1/this.slices;
+
+        for (var i = 0; i <= this.slices; i++){
+            this.vertices.push(Math.cos(angle), 0, -Math.sin(angle));
+            this.vertices.push(Math.cos(angle), 1, -Math.sin(angle));
             
-            this.vertices.push(Math.cos(ang), 0, -Math.sin(ang));
-            this.vertices.push(Math.cos(ang), 1, -Math.sin(ang));
+            this.normals.push(Math.cos(angle), 0, -Math.sin(angle));
+            this.normals.push(Math.cos(angle), 0, -Math.sin(angle));
             
+            this.texCoords.push(mapTexture, 1);
+            this.texCoords.push(mapTexture, 0);
+
             this.indices.push((i*2)+2, (i*2)+1, (i*2));
             this.indices.push((i*2)+2, (i*2)+3, (i*2)+1);
-
-            this.normals.push(Math.cos(ang), 0, -Math.sin(ang));
-            this.normals.push(Math.cos(ang), 0, -Math.sin(ang));
-            ang+=alphaAng;
+            
+            angle += alphaAngle;
+            mapTexture += alphaMapTexture;
         }
         
         this.primitiveType = this.scene.gl.TRIANGLES;
