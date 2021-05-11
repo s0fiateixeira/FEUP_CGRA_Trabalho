@@ -3,6 +3,7 @@ import { MySphere } from "./MySphere.js";
 import { MyMovingObject } from "./MyMovingObject.js";
 import { MyCubeMap } from "./MyCubeMap.js";
 import { MyCylinder } from "./MyCylinder.js";
+import { MyFish } from "./MyFish.js";
 
 /**
 * MyScene
@@ -35,6 +36,7 @@ export class MyScene extends CGFscene {
         this.movingObject = new MyMovingObject(this);
         this.cubeMap = new MyCubeMap(this);
         this.cylinder = new MyCylinder(this, 6);
+        this.fish = new MyFish(this);
 
         this.defaultAppearance = new CGFappearance(this);
 		this.defaultAppearance.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -56,8 +58,9 @@ export class MyScene extends CGFscene {
         this.selectedTexture = 0;
         this.showSphere = false;
         this.showAmbient = true;
-        this.showMyMovingObject = true;
+        this.showMyMovingObject = false;
         this.showCylinder = false;
+        this.showFish = true;
 
         this.textureList = {
 			'Demo Texture': 0,
@@ -171,7 +174,7 @@ export class MyScene extends CGFscene {
             this.popMatrix();
         }
 
-         // Draw Sphere
+        // Draw Sphere
         this.sphereAppearance.apply();
         if (this.showSphere){
             this.pushMatrix();
@@ -181,6 +184,12 @@ export class MyScene extends CGFscene {
             this.sphere.display();
             this.popMatrix();
         }
+
+        // Draw Fish
+        if (this.showFish){
+            this.fish.display();
+        }
+        
 
         // ---- END Primitive drawing section
     }
