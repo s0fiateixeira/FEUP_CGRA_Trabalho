@@ -31,7 +31,7 @@ export class MyScene extends CGFscene {
 
         //Initialize scene objects
         this.axis = new CGFaxis(this);
-        this.incompleteSphere = new MySphere(this, 16, 8);
+        this.sphere = new MySphere(this, 16, 8);
         this.movingObject = new MyMovingObject(this, 3, 3);
         this.cubeMap = new MyCubeMap(this);
         this.cylinder = new MyCylinder(this, 6);
@@ -52,10 +52,10 @@ export class MyScene extends CGFscene {
         //Objects connected to MyInterface
         this.displayAxis = true;
         this.selectedTexture = 0;
-        this.showSphere = false;
+        this.showSphere = true;
         this.showAmbient = true;
         this.showMyMovingObject = false;
-        this.showCylinder = true;
+        this.showCylinder = false;
 
         this.textureList = {
 			'Demo Texture': 0,
@@ -165,9 +165,11 @@ export class MyScene extends CGFscene {
         }
 
         this.sphereAppearance.apply();
-        //This sphere does not have defined texture coordinates
-        if (this.showSphere)
-            this.incompleteSphere.display();
+        if (this.showSphere){
+            this.sphere.sphereTexture.apply();
+            //this.sphere.enableNormalViz();
+            this.sphere.display();
+        }
 
         // ---- END Primitive drawing section
     }

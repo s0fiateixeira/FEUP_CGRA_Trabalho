@@ -1,4 +1,4 @@
-import {CGFobject} from '../lib/CGF.js';
+import {CGFappearance, CGFobject} from '../lib/CGF.js';
 
 export class MySphere extends CGFobject {
   /**
@@ -12,14 +12,21 @@ export class MySphere extends CGFobject {
     this.latDivs = stacks * 2;
     this.longDivs = slices;
 
+    this.initTexture();
     this.initBuffers();
   }
 
-  /**
-   * @method initBuffers
-   * Initializes the sphere buffers
-   * TODO: DEFINE TEXTURE COORDINATES
-   */
+  initTexture() {
+    //------ Texture
+    this.sphereTexture = new CGFappearance(this.scene);
+    this.sphereTexture.setAmbient(0.1, 0.1, 0.1, 1);
+    this.sphereTexture.setDiffuse(0.9, 0.9, 0.9, 1);
+    this.sphereTexture.setSpecular(0.1, 0.1, 0.1, 1);
+    this.sphereTexture.setShininess(10.0);
+    this.sphereTexture.loadTexture('images/earth.jpg');
+    this.sphereTexture.setTextureWrap('REPEAT', 'REPEAT');
+  }
+
   initBuffers() {
     this.vertices = [];
     this.indices = [];
@@ -32,6 +39,11 @@ export class MySphere extends CGFobject {
     var thetaInc = (2 * Math.PI) / this.longDivs;
     var latVertices = this.longDivs + 1;
 
+    var textMapLongitude = 0;
+    var textMapLatitude = 0;
+    var alphaTextMapLongitude = 1/this.longDivs;
+    var alphaTextMapLatitude = 1/this.latDivs;
+
     // build an all-around stack at a time, starting on "north pole" and proceeding "south"
     for (let latitude = 0; latitude <= this.latDivs; latitude++) {
       var sinPhi = Math.sin(phi);
@@ -39,12 +51,16 @@ export class MySphere extends CGFobject {
 
       // in each stack, build all the slices around, starting on longitude 0
       theta = 0;
+      textMapLongitude = 0;
       for (let longitude = 0; longitude <= this.longDivs; longitude++) {
         //--- Vertices coordinates
         var x = Math.cos(theta) * sinPhi;
         var y = cosPhi;
         var z = Math.sin(-theta) * sinPhi;
         this.vertices.push(x, y, z);
+
+        //TexCoords
+        this.texCoords.push(textMapLongitude, textMapLatitude);
 
         //--- Indices
         if (latitude < this.latDivs && longitude < this.longDivs) {
@@ -67,11 +83,10 @@ export class MySphere extends CGFobject {
         theta += thetaInc;
 
         //--- Texture Coordinates
-        // To be done... 
-        // May need some additional code also in the beginning of the function.
-        
+        textMapLongitude += alphaTextMapLongitude;
       }
       phi += phiInc;
+      textMapLatitude += alphaTextMapLatitude;
     }
 
 
