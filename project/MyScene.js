@@ -32,7 +32,7 @@ export class MyScene extends CGFscene {
         //Initialize scene objects
         this.axis = new CGFaxis(this);
         this.sphere = new MySphere(this, 16, 8);
-        this.movingObject = new MyMovingObject(this, 3, 3);
+        this.movingObject = new MyMovingObject(this);
         this.cubeMap = new MyCubeMap(this);
         this.cylinder = new MyCylinder(this, 6);
 
@@ -54,9 +54,9 @@ export class MyScene extends CGFscene {
         this.speedFactor = 1;
         this.displayAxis = true;
         this.selectedTexture = 0;
-        this.showSphere = true;
+        this.showSphere = false;
         this.showAmbient = true;
-        this.showMyMovingObject = false;
+        this.showMyMovingObject = true;
         this.showCylinder = false;
 
         this.textureList = {
@@ -94,12 +94,12 @@ export class MyScene extends CGFscene {
         // Check for key codes e.g. in https://keycode.info/
         if (this.gui.isKeyPressed("KeyW")) {
                 text+=" W ";
-                this.movingObject.accelerate(0.2);
+                this.movingObject.accelerate(0.2*this.speedFactor);
                 keysPressed=true;
         }
         if (this.gui.isKeyPressed("KeyS")) {
                 text+=" S ";
-                this.movingObject.accelerate(-0.2);
+                this.movingObject.accelerate(-0.2*this.speedFactor);
                 keysPressed=true;
         }
         if (this.gui.isKeyPressed("KeyA")) {
@@ -126,6 +126,7 @@ export class MyScene extends CGFscene {
     // called periodically (as per setUpdatePeriod() in init())
     update(t){
         this.checkKeys();
+        this.movingObject.update();
     }
 
     display() {
@@ -144,7 +145,7 @@ export class MyScene extends CGFscene {
         // Draw axis
         if (this.displayAxis)
             this.axis.display();
-        
+    
         // ---- BEGIN Primitive drawing section
 
         // Draw Ambient
@@ -156,21 +157,29 @@ export class MyScene extends CGFscene {
         this.popMatrix();
 
         // Draw Moving Object
-        if (this.showMyMovingObject)
+        if (this.showMyMovingObject){
             this.movingObject.display();
+        }
 
         // Draw Cylinder
         if (this.showCylinder){
+            this.pushMatrix();
             this.cylinder.cylinderTexture.apply();
             //this.cylinder.enableNormalViz();
+            this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
             this.cylinder.display();
+            this.popMatrix();
         }
 
+         // Draw Sphere
         this.sphereAppearance.apply();
         if (this.showSphere){
+            this.pushMatrix();
             this.sphere.sphereTexture.apply();
             //this.sphere.enableNormalViz();
+            this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
             this.sphere.display();
+            this.popMatrix();
         }
 
         // ---- END Primitive drawing section

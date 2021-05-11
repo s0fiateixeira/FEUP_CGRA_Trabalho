@@ -7,6 +7,7 @@ import {CGFobject} from '../lib/CGF.js';
 export class MyMovingObject extends CGFobject {
 	constructor(scene) {
 		super(scene);
+		this.scaleFactor = 1;
 		this.initBuffers();
 		//object orientation, horizontaly - YY - angle
 		this.orientation = 0;
@@ -44,9 +45,9 @@ export class MyMovingObject extends CGFobject {
 
 		this.initGLBuffers();
 	}
-	//TODO
 	/*Updates the position according to orientation and velocity values*/
 	update(){
+		this.scaleFactor = this.scene.scaleFactor;
 		this.position.x += this.velocity * Math.sin(this.orientation);
 		this.position.z += this.velocity * Math.cos(this.orientation);
 	}
@@ -57,7 +58,7 @@ export class MyMovingObject extends CGFobject {
 	}
 	/*Changes velocity value - val can be positive or negative*/
 	accelerate(val){
-		this.velocity = val;
+		this.velocity += val;
 	}
 	/*Replaces the object on the initial position without rotation nor velocity*/
 	reset(){
@@ -72,6 +73,7 @@ export class MyMovingObject extends CGFobject {
 		this.scene.pushMatrix();
 		this.scene.translate(this.position.x, this.position.y, this.position.z);
 		this.scene.rotate(this.orientation, 0, 1, 0);
+		this.scene.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
 		super.display();
 		this.scene.popMatrix();
 	}

@@ -59,7 +59,7 @@ export class MySphere extends CGFobject {
         var z = Math.sin(-theta) * sinPhi;
         this.vertices.push(x, y, z);
 
-        //TexCoords
+        //--- TexCoords
         this.texCoords.push(textMapLongitude, textMapLatitude);
 
         //--- Indices
