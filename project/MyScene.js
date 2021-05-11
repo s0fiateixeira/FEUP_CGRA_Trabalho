@@ -50,6 +50,8 @@ export class MyScene extends CGFscene {
 		this.sphereAppearance.setShininess(120);
 
         //Objects connected to MyInterface
+        this.scaleFactor = 1;
+        this.speedFactor = 1;
         this.displayAxis = true;
         this.selectedTexture = 0;
         this.showSphere = true;

@@ -28,6 +28,10 @@ export class MyInterface extends CGFinterface {
         //Dropdown for textures
         this.gui.add(this.scene, 'selectedTexture', this.scene.textureList).name('Selected Texture').onChange(this.scene.selectedTextureChanged.bind(this.scene));
         
+        //Slider
+        this.gui.add(this.scene, 'scaleFactor', 0.5, 3.0).name('scaleFactor');
+        this.gui.add(this.scene, 'speedFactor', 0.1, 3.0).name('speedFactor');
+        
         this.initKeys();
         return true;
     }
