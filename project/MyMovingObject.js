@@ -45,7 +45,7 @@ export class MyMovingObject extends CGFobject {
 
 		this.initGLBuffers();
 	}
-	/*Updates the position according to orientation and velocity values*/
+	/*Updates scaleFactor and the position according to orientation and velocity values*/
 	update(){
 		this.scaleFactor = this.scene.scaleFactor;
 		this.position.x += this.velocity * Math.sin(this.orientation);
