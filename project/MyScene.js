@@ -54,7 +54,7 @@ export class MyScene extends CGFscene {
         //Objects connected to MyInterface
         this.scaleFactor = 1;
         this.speedFactor = 1;
-        this.displayAxis = true;
+        this.displayAxis = false;
         this.selectedTexture = 0;
         this.showSphere = false;
         this.showAmbient = true;
