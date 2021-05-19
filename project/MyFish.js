@@ -26,7 +26,7 @@ export class MyFish extends CGFobject {
     initMaterials() {
         this.fishMaterial = new CGFappearance(this.scene);
         this.fishMaterial.setAmbient(0, 0, 0, 1);
-        this.fishMaterial.setDiffuse(0.54, 0.33, 0.83, 1);
+        this.fishMaterial.setDiffuse(0.54, 0.33, 0.83, 1.0);
         this.fishMaterial.setSpecular(0, 0, 0, 1);
         this.fishMaterial.setShininess(100.0);
 	}
@@ -49,23 +49,31 @@ export class MyFish extends CGFobject {
     }
     initShader(){
         this.bodyShader = new CGFshader(this.scene.gl, "shaders/scales.vert", "shaders/scales.frag");
+        this.rightFinShader = new CGFshader(this.scene.gl, "shaders/rightFin.vert", "shaders/rightFin.frag");
+        this.leftFinShader = new CGFshader(this.scene.gl, "shaders/leftFin.vert", "shaders/leftFin.frag");
+        this.tailShader = new CGFshader(this.scene.gl, "shaders/tail.vert", "shaders/tail.frag");
     }
     display(){
 
         this.fishMaterial.apply();
-        // Draw Left Fin
-        this.scene.pushMatrix();
-        this.scene.scale(0.125, 0.125, -0.125);
-        this.scene.translate(-2.5, -1, -1);
-        this.scene.rotate(Math.PI/2,0,0,1);
-        this.leftFin.display();
-        this.scene.popMatrix();
 
         // Draw Right Fin
         this.scene.pushMatrix();
+        this.scene.setActiveShader(this.rightFinShader);
+        this.scene.scale(0.125, 0.125, -0.125);
+        this.scene.translate(-2.5, -1, -1);
+        this.scene.rotate(Math.PI/2,0,0,1);
+        this.rightFin.display();
+        this.scene.setActiveShader(this.scene.defaultShader);
+        this.scene.popMatrix();
+
+        // Draw Left Fin
+        this.scene.pushMatrix();
+        this.scene.setActiveShader(this.leftFinShader);
         this.scene.scale(0.125, 0.125, -0.125);
         this.scene.translate(2.5, -1, -1);
-        this.rightFin.display();
+        this.leftFin.display();
+        this.scene.setActiveShader(this.scene.defaultShader);
         this.scene.popMatrix();
 
         // Draw Top Fin
@@ -79,11 +87,13 @@ export class MyFish extends CGFobject {
 
         // Draw Fish Tail
         this.scene.pushMatrix();
+        this.scene.setActiveShader(this.tailShader);
         this.scene.translate(0, 0, -0.9);
         this.scene.scale(0.2, 0.2, 0.2);
         this.scene.rotate(Math.PI/2, 0, 1, 0);
         this.scene.rotate(Math.PI/2, 0, 0, 1);
         this.tail.display();
+        this.scene.setActiveShader(this.scene.defaultShader);
         this.scene.popMatrix();
 
         // Draw Left Eye
@@ -105,14 +115,18 @@ export class MyFish extends CGFobject {
         this.scene.popMatrix();
 
         // Draw Body
-        this.scene.setActiveShader(this.bodyShader);
         this.scene.pushMatrix();
+        this.scene.setActiveShader(this.bodyShader);
         this.scales.apply();
         this.scene.scale(0.25, 0.375, 0.5);
         this.scene.rotate(-Math.PI/2, 0, 1, 0);
         this.body.display();
         this.scene.setActiveShader(this.scene.defaultShader);
         this.scene.popMatrix();
-
+    }
+    update(t){
+        this.tailShader.setUniformsValues({ timeFactor: t / 100 % 100 });
+        this.leftFinShader.setUniformsValues({timeFactor: t / 100 % 100});
+        this.rightFinShader.setUniformsValues({timeFactor: t / 100 % 100});
     }
 }

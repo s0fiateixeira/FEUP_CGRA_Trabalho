@@ -54,7 +54,7 @@ export class MyScene extends CGFscene {
         //Objects connected to MyInterface
         this.scaleFactor = 1;
         this.speedFactor = 1;
-        this.displayAxis = false;
+        this.displayAxis = true;
         this.selectedTexture = 0;
         this.showSphere = false;
         this.showAmbient = true;
@@ -130,6 +130,7 @@ export class MyScene extends CGFscene {
     update(t){
         this.checkKeys();
         this.movingObject.update();
+        this.fish.update(t);
     }
 
     display() {
@@ -168,7 +169,6 @@ export class MyScene extends CGFscene {
         if (this.showCylinder){
             this.pushMatrix();
             this.cylinder.cylinderTexture.apply();
-            //this.cylinder.enableNormalViz();
             this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
             this.cylinder.display();
             this.popMatrix();
@@ -187,7 +187,10 @@ export class MyScene extends CGFscene {
 
         // Draw Fish
         if (this.showFish){
+            this.pushMatrix();
+            this.translate(0, 3, 0);
             this.fish.display();
+            this.popMatrix();
         }
         
 
