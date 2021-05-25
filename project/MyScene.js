@@ -4,6 +4,7 @@ import { MyMovingObject } from "./MyMovingObject.js";
 import { MyCubeMap } from "./MyCubeMap.js";
 import { MyCylinder } from "./MyCylinder.js";
 import { MyFish } from "./MyFish.js";
+import { MySeaFloor } from "./MySeaFloor.js";
 
 /**
 * MyScene
@@ -37,6 +38,7 @@ export class MyScene extends CGFscene {
         this.cubeMap = new MyCubeMap(this);
         this.cylinder = new MyCylinder(this, 6);
         this.fish = new MyFish(this);
+        this.sand = new MySeaFloor(this, 20, 0, 20, 0, 20);
 
         this.defaultAppearance = new CGFappearance(this);
 		this.defaultAppearance.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -61,6 +63,7 @@ export class MyScene extends CGFscene {
         this.showMyMovingObject = false;
         this.showCylinder = false;
         this.showFish = true;
+        this.showSand = true;
 
         this.textureList = {
 			'Demo Texture': 0,
@@ -76,7 +79,7 @@ export class MyScene extends CGFscene {
         this.lights[0].update();
     }
     initCameras() {
-        this.camera = new CGFcamera(0.4, 0.1, 500, vec3.fromValues(15, 15, 15), vec3.fromValues(0, 0, 0));
+        this.camera = new CGFcamera(1.5, 0.1, 500, vec3.fromValues(2, 2, 2), vec3.fromValues(0, 2, 0));
     }
 
     setDefaultAppearance() {
@@ -160,6 +163,9 @@ export class MyScene extends CGFscene {
             this.cubeMap.display();
         this.popMatrix();
 
+        //this.sand.sandTexture.bind(1);
+        //this.sand.sandTexMap.bind(2);
+
         // Draw Moving Object
         if (this.showMyMovingObject){
             this.movingObject.display();
@@ -179,16 +185,20 @@ export class MyScene extends CGFscene {
         if (this.showSphere){
             this.pushMatrix();
             this.sphere.sphereTexture.apply();
-            //this.sphere.enableNormalViz();
             this.scale(this.scaleFactor, this.scaleFactor, this.scaleFactor);
             this.sphere.display();
             this.popMatrix();
         }
 
+        // Draw Sand
+        if (this.showSand){
+            this.sand.display();
+        }
+
         // Draw Fish
         if (this.showFish){
             this.pushMatrix();
-            this.translate(0, 3, 0);
+            this.translate(0, 2, 0);
             this.fish.display();
             this.popMatrix();
         }
