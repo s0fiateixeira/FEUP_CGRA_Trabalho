@@ -23,14 +23,16 @@ export class MySeaFloor extends CGFobject {
 		this.sandMaterial.setShininess(120);
 	}
     initTexture() {        
-        this.sandTexture = new CGFtexture(this.scene, 'images/sand.png');
-		this.sandTexMap = new CGFtexture(this.scene, 'images/sandMap.png');
-		this.sandMaterial.setTexture(this.sandTexture);
+        this.sandTextures = [
+			this.sandTexture = new CGFtexture(this.scene, 'images/sand.png'),
+			this.sandTexMap = new CGFtexture(this.scene, 'images/sandMap.png')
+		];
+		//this.sandMaterial.setTexture(this.sandTexture);
     }
     initShader(){
 		this.sandShader = new CGFshader(this.scene.gl, "shaders/sand.vert", "shaders/sand.frag");
-		this.sandShader.setUniformsValues({ uSampler1: this.sandTexture});
-		this.sandShader.setUniformsValues({ uSampler3: this.sandTexMap});
+		this.sandShader.setUniformsValues({ uSampler1: 0});
+		this.sandShader.setUniformsValues({ uSampler3: 1});
 	}
     display(){
 
@@ -38,6 +40,8 @@ export class MySeaFloor extends CGFobject {
 
         this.scene.pushMatrix();
         this.scene.setActiveShader(this.sandShader);
+		this.sandTexture.bind(0);
+		this.sandTexMap.bind(1);
 		this.scene.translate(0, -10, 0);
         this.scene.rotate(-Math.PI/2, 1, 0, 0);
 		this.scene.scale(50, 50, 50);
