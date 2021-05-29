@@ -26,6 +26,7 @@ export class MyInterface extends CGFinterface {
         this.gui.add(this.scene, 'showCylinder').name('Show Cylinder');
         this.gui.add(this.scene, 'showFish').name('Show Fish');
         this.gui.add(this.scene, 'showSand').name('Show Sand');
+        this.gui.add(this.scene, 'showWater').name('Show Water');
 
         //Dropdown for textures
         this.gui.add(this.scene, 'selectedTexture', this.scene.textureList).name('Selected Texture').onChange(this.scene.selectedTextureChanged.bind(this.scene));

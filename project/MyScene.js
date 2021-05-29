@@ -5,6 +5,7 @@ import { MyCubeMap } from "./MyCubeMap.js";
 import { MyCylinder } from "./MyCylinder.js";
 import { MyFish } from "./MyFish.js";
 import { MySeaFloor } from "./MySeaFloor.js";
+import { MyWater } from "./MyWater.js";
 
 /**
 * MyScene
@@ -38,7 +39,8 @@ export class MyScene extends CGFscene {
         this.cubeMap = new MyCubeMap(this);
         this.cylinder = new MyCylinder(this, 6);
         this.fish = new MyFish(this);
-        this.sand = new MySeaFloor(this, 20, 0, 20, 0, 20);
+        this.sand = new MySeaFloor(this, 20);
+        this.water = new MyWater(this, 20);
 
         this.defaultAppearance = new CGFappearance(this);
 		this.defaultAppearance.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -64,6 +66,7 @@ export class MyScene extends CGFscene {
         this.showCylinder = false;
         this.showFish = true;
         this.showSand = true;
+        this.showWater = true;
 
         this.textureList = {
 			'Demo Texture': 0,
@@ -134,6 +137,7 @@ export class MyScene extends CGFscene {
         this.checkKeys();
         this.movingObject.update();
         this.fish.update(t);
+        this.water.waterShader.setUniformsValues({ timeFactor: t / 100 % 100 });
     }
 
     display() {
@@ -162,9 +166,6 @@ export class MyScene extends CGFscene {
         if (this.showAmbient)
             this.cubeMap.display();
         this.popMatrix();
-
-        //this.sand.sandTexture.bind(1);
-        //this.sand.sandTexMap.bind(2);
 
         // Draw Moving Object
         if (this.showMyMovingObject){
@@ -195,6 +196,11 @@ export class MyScene extends CGFscene {
             this.sand.display();
         }
 
+        //Draw Water
+        if (this.showWater){
+            this.water.display();
+        }
+        
         // Draw Fish
         if (this.showFish){
             this.pushMatrix();
@@ -202,7 +208,6 @@ export class MyScene extends CGFscene {
             this.fish.display();
             this.popMatrix();
         }
-        
 
         // ---- END Primitive drawing section
     }
