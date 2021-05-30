@@ -6,6 +6,7 @@ import { MyCylinder } from "./MyCylinder.js";
 import { MyFish } from "./MyFish.js";
 import { MySeaFloor } from "./MySeaFloor.js";
 import { MyWater } from "./MyWater.js";
+import { MyPillar } from "./MyPillar.js";
 
 /**
 * MyScene
@@ -41,6 +42,7 @@ export class MyScene extends CGFscene {
         this.fish = new MyFish(this);
         this.sand = new MySeaFloor(this, 20);
         this.water = new MyWater(this, 20);
+        this.pillar = new MyPillar(this);
 
         this.defaultAppearance = new CGFappearance(this);
 		this.defaultAppearance.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -67,6 +69,7 @@ export class MyScene extends CGFscene {
         this.showFish = true;
         this.showSand = true;
         this.showWater = true;
+        this.showPillars = true;
 
         this.textureList = {
 			'Demo Texture': 0,
@@ -209,6 +212,11 @@ export class MyScene extends CGFscene {
             this.popMatrix();
         }
 
+        // Draw Pillars
+        if (this.showPillars)
+        {
+            this.pillar.display();
+        }
         // ---- END Primitive drawing section
     }
 }
