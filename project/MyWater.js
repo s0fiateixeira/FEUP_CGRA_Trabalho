@@ -48,4 +48,7 @@ export class MyWater extends CGFobject {
         this.scene.setActiveShader(this.scene.defaultShader);
         this.scene.popMatrix();
 	}
+	update(t){
+        this.waterShader.setUniformsValues({ timeFactor: t / 100 % 100 });
+	}
 }
