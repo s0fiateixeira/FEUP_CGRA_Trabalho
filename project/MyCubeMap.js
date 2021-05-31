@@ -26,6 +26,57 @@ export class MyCubeMap {
 
     initTexture(){
 
+        // Water cube map texture
+
+        this.waterTopTexture = new CGFappearance(this.scene);
+        this.waterTopTexture.setAmbient(0.1, 0.1, 0.1, 1);
+        this.waterTopTexture.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.waterTopTexture.setSpecular(0.1, 0.1, 0.1, 1);
+        this.waterTopTexture.setShininess(10.0);
+        this.waterTopTexture.loadTexture('images/underwater_cubemap/top.jpg');
+        this.waterTopTexture.setTextureWrap('REPEAT', 'REPEAT');
+
+        this.waterBottomTexture = new CGFappearance(this.scene);
+        this.waterBottomTexture.setAmbient(0.1, 0.1, 0.1, 1);
+        this.waterBottomTexture.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.waterBottomTexture.setSpecular(0.1, 0.1, 0.1, 1);
+        this.waterBottomTexture.setShininess(10.0);
+        this.waterBottomTexture.loadTexture('images/underwater_cubemap/bottom.jpg');
+        this.waterBottomTexture.setTextureWrap('REPEAT', 'REPEAT');
+
+        this.waterLeftTexture = new CGFappearance(this.scene);
+        this.waterLeftTexture.setAmbient(0.1, 0.1, 0.1, 1);
+        this.waterLeftTexture.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.waterLeftTexture.setSpecular(0.1, 0.1, 0.1, 1);
+        this.waterLeftTexture.setShininess(10.0);
+        this.waterLeftTexture.loadTexture('images/underwater_cubemap/left.jpg');
+        this.waterLeftTexture.setTextureWrap('REPEAT', 'REPEAT');
+        
+        this.waterRightTexture = new CGFappearance(this.scene);
+        this.waterRightTexture.setAmbient(0.1, 0.1, 0.1, 1);
+        this.waterRightTexture.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.waterRightTexture.setSpecular(0.1, 0.1, 0.1, 1);
+        this.waterRightTexture.setShininess(10.0);
+        this.waterRightTexture.loadTexture('images/underwater_cubemap/right.jpg');
+        this.waterRightTexture.setTextureWrap('REPEAT', 'REPEAT');
+
+        this.waterFrontTexture = new CGFappearance(this.scene);
+        this.waterFrontTexture.setAmbient(0.1, 0.1, 0.1, 1);
+        this.waterFrontTexture.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.waterFrontTexture.setSpecular(0.1, 0.1, 0.1, 1);
+        this.waterFrontTexture.setShininess(10.0);
+        this.waterFrontTexture.loadTexture('images/underwater_cubemap/front.jpg');
+        this.waterFrontTexture.setTextureWrap('REPEAT', 'REPEAT');
+
+        this.waterBackTexture = new CGFappearance(this.scene);
+        this.waterBackTexture.setAmbient(0.1, 0.1, 0.1, 1);
+        this.waterBackTexture.setDiffuse(0.9, 0.9, 0.9, 1);
+        this.waterBackTexture.setSpecular(0.1, 0.1, 0.1, 1);
+        this.waterBackTexture.setShininess(10.0);
+        this.waterBackTexture.loadTexture('images/underwater_cubemap/back.jpg');
+        this.waterBackTexture.setTextureWrap('REPEAT', 'REPEAT');
+
+
         // Demo cube map texture
 
         this.demoTopTexture = new CGFappearance(this.scene);
@@ -75,7 +126,6 @@ export class MyCubeMap {
         this.demoBackTexture.setShininess(10.0);
         this.demoBackTexture.loadTexture('images/demo_cubemap/back.png');
         this.demoBackTexture.setTextureWrap('REPEAT', 'REPEAT');
-
 
 
         // Test cube map texture
@@ -135,6 +185,8 @@ export class MyCubeMap {
             this.texture = 0;
         else if (selectedTexture == 1)
             this.texture = 1;
+        else if (selectedTexture == 2)
+            this.texture = 2;
     }
 
     display(){
@@ -143,8 +195,10 @@ export class MyCubeMap {
         this.scene.quadMaterial.apply();
 
         if (this.texture == 0)
-            this.demoFrontTexture.apply();
+            this.waterFrontTexture.apply();
         else if (this.texture == 1)
+            this.demoFrontTexture.apply();
+        else if (this.texture == 2)
             this.testFrontTexture.apply();
         
         this.scene.pushMatrix();
@@ -156,8 +210,10 @@ export class MyCubeMap {
         this.scene.quadMaterial.apply();
         
         if (this.texture == 0)
-            this.demoBackTexture.apply();
+            this.waterBackTexture.apply();
         else if (this.texture == 1)
+            this.demoBackTexture.apply();
+        else if (this.texture == 2)
             this.testBackTexture.apply();
         
         this.scene.pushMatrix();
@@ -170,8 +226,10 @@ export class MyCubeMap {
         this.scene.quadMaterial.apply();
         
         if (this.texture == 0)
-            this.demoRightTexture.apply();
+            this.waterRightTexture.apply();
         else if (this.texture == 1)
+            this.demoRightTexture.apply();
+        else if (this.texture == 2)
             this.testRightTexture.apply();
         
         this.scene.pushMatrix();
@@ -184,8 +242,10 @@ export class MyCubeMap {
         this.scene.quadMaterial.apply();
         
         if (this.texture == 0)
-            this.demoLeftTexture.apply();
+            this.waterLeftTexture.apply();
         else if (this.texture == 1)
+            this.demoLeftTexture.apply();
+        else if (this.texture == 2)
             this.testLeftTexture.apply();
         
         this.scene.pushMatrix();
@@ -198,8 +258,10 @@ export class MyCubeMap {
         this.scene.quadMaterial.apply();
 
         if (this.texture == 0)
-            this.demoTopTexture.apply();
+            this.waterTopTexture.apply();
         else if (this.texture == 1)
+            this.demoTopTexture.apply();
+        else if (this.texture == 2)
             this.testTopTexture.apply();
         
         this.scene.pushMatrix();
@@ -212,8 +274,10 @@ export class MyCubeMap {
         this.scene.quadMaterial.apply();
         
         if (this.texture == 0)
-            this.demoBottomTexture.apply();
+            this.waterBottomTexture.apply();
         else if (this.texture == 1)
+            this.demoBottomTexture.apply();
+        else if (this.texture == 2)
             this.testBottomTexture.apply();
         
         this.scene.pushMatrix();

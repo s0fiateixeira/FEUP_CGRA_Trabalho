@@ -72,8 +72,9 @@ export class MyScene extends CGFscene {
         this.showPillars = true;
 
         this.textureList = {
-			'Demo Texture': 0,
-			'Test Texture': 1
+            'Water Texture': 0,
+			'Demo Texture': 1,
+			'Test Texture': 2
         }
 
         this.selectedTextureChanged(this.selectedTexture);
