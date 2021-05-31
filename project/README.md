@@ -23,7 +23,7 @@ Este projeto foi realizado no âmbito da Unidade Curricular de Computação Grá
     
     * Animação do peixe;
 
-    ![modelacao_peixe](./screenshots/proj-t02g01-gif.png)
+    ![modelacao_peixe](./screenshots/proj-t02g01-gif.gif)
 
     * Fundo de areia;
 
