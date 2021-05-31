@@ -15,7 +15,7 @@ vec2 coords;
 void main() {
 	
 	vec4 color = texture2D(uSampler1, vTextureCoord);
-	vec4 filter = texture2D(uSampler3, vTextureCoord + timeFactor * 0.005);
+	vec4 filter = texture2D(uSampler3, vTextureCoord + timeFactor * 0.001);
 
     coords = vec2 (vTextureCoord.x + (filter.r - 0.5), vTextureCoord.y + (filter.g - 0.5));
 
