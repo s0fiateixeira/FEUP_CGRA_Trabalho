@@ -19,27 +19,27 @@ Este projeto foi realizado no âmbito da Unidade Curricular de Computação Grá
 * Parte B
     * Modelação do peixe;
 
-    ![modelacao_peixe](https://git.fe.up.pt/cgra/cgra-2020-2021/t02/cgra-t02-g01/-/tree/master/project/screenshots/proj-t02g01-1)
+    ![modelacao_peixe](https://git.fe.up.pt/cgra/cgra-2020-2021/t02/cgra-t02-g01/project/screenshots/proj-t02g01-1)
     
     * Animação do peixe;
 
-    ![modelacao_peixe](https://git.fe.up.pt/cgra/cgra-2020-2021/t02/cgra-t02-g01/-/tree/master/project/screenshots/proj-t02g01-gif)
+    ![modelacao_peixe](https://git.fe.up.pt/cgra/cgra-2020-2021/t02/cgra-t02-g01/project/screenshots/proj-t02g01-gif)
 
     * Fundo de areia;
 
-    ![areia](https://git.fe.up.pt/cgra/cgra-2020-2021/t02/cgra-t02-g01/-/tree/master/project/screenshots/proj-t02g01-2.1)
+    ![areia](https://git.fe.up.pt/cgra/cgra-2020-2021/t02/cgra-t02-g01/project/screenshots/proj-t02g01-2.1)
 
     * Ninho do peixe;
 
-    ![ninho](https://git.fe.up.pt/cgra/cgra-2020-2021/t02/cgra-t02-g01/-/tree/master/project/screenshots/proj-t02g01-2.2)
+    ![ninho](https://git.fe.up.pt/cgra/cgra-2020-2021/t02/cgra-t02-g01/project/screenshots/proj-t02g01-2.2)
 
     * Superfície da água (ainda não está completamente terminado, falta a animação);
 
-    ![agua](https://git.fe.up.pt/cgra/cgra-2020-2021/t02/cgra-t02-g01/-/tree/master/project/screenshots/proj-t02g01-3)
+    ![agua](https://git.fe.up.pt/cgra/cgra-2020-2021/t02/cgra-t02-g01/project/screenshots/proj-t02g01-3)
 
     * Pilares;
-    ![ninho](https://git.fe.up.pt/cgra/cgra-2020-2021/t02/cgra-t02-g01/-/tree/master/project/screenshots/proj-t02g01-5.1)
-    ![ninho](https://git.fe.up.pt/cgra/cgra-2020-2021/t02/cgra-t02-g01/-/tree/master/project/screenshots/proj-t02g01-5.2)
+    ![ninho](https://git.fe.up.pt/cgra/cgra-2020-2021/t02/cgra-t02-g01/project/screenshots/proj-t02g01-5.1)
+    ![ninho](https://git.fe.up.pt/cgra/cgra-2020-2021/t02/cgra-t02-g01/project/screenshots/proj-t02g01-5.2)
     * Novas texturas do MyCubeMap (ainda não está completamente terminado, falta ajustar a cor da superfície da água com a cor do fundo);
 
 **Funcionalidades por implementar**:
