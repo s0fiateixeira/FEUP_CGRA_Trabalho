@@ -1,4 +1,4 @@
-import {CGFappearance, CGFobject, CGFshader} from '../lib/CGF.js';
+import { CGFobject } from '../lib/CGF.js';
 import { MyRock } from "./MyRock.js";
 
 /**

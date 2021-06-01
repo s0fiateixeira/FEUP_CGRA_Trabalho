@@ -8,6 +8,7 @@ import { MySeaFloor } from "./MySeaFloor.js";
 import { MyWater } from "./MyWater.js";
 import { MyPillar } from "./MyPillar.js";
 import { MyRockSet } from "./MyRockSet.js";
+import { MyAlgaeSet } from "./MyAlgaeSet.js";
 
 /**
 * MyScene
@@ -44,7 +45,8 @@ export class MyScene extends CGFscene {
         this.sand = new MySeaFloor(this, 20);
         this.water = new MyWater(this, 20);
         this.pillar = new MyPillar(this);
-        this.rock = new MyRockSet(this);
+        this.rocks = new MyRockSet(this);
+        this.algae = new MyAlgaeSet(this);
 
         this.defaultAppearance = new CGFappearance(this);
 		this.defaultAppearance.setAmbient(0.2, 0.4, 0.8, 1.0);
@@ -73,6 +75,7 @@ export class MyScene extends CGFscene {
         this.showWater = true;
         this.showPillars = true;
         this.showRocks = true;
+        this.showAlgae = true;
 
         this.textureList = {
             'Water Texture': 0,
@@ -135,12 +138,6 @@ export class MyScene extends CGFscene {
         }
         if (keysPressed) {
             console.log(text);
-            console.log(this.rock.numberRocks);
-            console.log(this.rock.randomX);
-            console.log(this.rock.randomY);
-            console.log(this.rock.randomZ);
-            console.log(this.rock.randomPositionX);
-            console.log(this.rock.randomPositionZ);
             this.movingObject.update();
         }
     }
@@ -230,9 +227,12 @@ export class MyScene extends CGFscene {
         }
 
         // Draw Rocks
-        if (this.showRocks){
-            this.rock.display();
-        }
+        if (this.showRocks)
+            this.rocks.display();
+
+        // Draw Algae
+        if (this.showAlgae)
+            this.algae.display();
             
         // ---- END Primitive drawing section
     }
