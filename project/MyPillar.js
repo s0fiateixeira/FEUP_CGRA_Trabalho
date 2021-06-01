@@ -44,7 +44,7 @@ export class MyPillar extends CGFobject {
 		this.scene.translate(0, 0, -7);
 		this.cylinder.display();
 		
-		this.scene.translate(-25, 0, 0);
+		this.scene.translate(-30, 0, 0);
 		this.cylinder.display();
 		
 		this.scene.translate(0, 0, 7);
