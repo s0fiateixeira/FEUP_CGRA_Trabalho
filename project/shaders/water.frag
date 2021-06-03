@@ -24,5 +24,5 @@ void main() {
 
 	vec4 coordsWater = texture2D(uSampler1, coords);
 
-	gl_FragColor = color * coordsWater;
+	gl_FragColor = color * coordsWater * vec4(0.50, 0.40, 0.40, 1);
 }
