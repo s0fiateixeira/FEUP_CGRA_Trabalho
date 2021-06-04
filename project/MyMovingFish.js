@@ -10,9 +10,9 @@ export class MyMovingFish extends MyMovingObject {
 		super(scene);
         super.object = new MyFish(scene);
         this.fish = this.object;
-     }
-     update(t){
-         this.object.update(t);
-         super.update();
-     }
+    }
+    update(t){
+        this.object.update(t);
+        super.update();
+    }
 }

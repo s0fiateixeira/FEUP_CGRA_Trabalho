@@ -141,6 +141,18 @@ export class MyScene extends CGFscene {
             this.fish.reset();
             keysPressed=true;
         }
+        if (this.gui.isKeyPressed("KeyP")) {
+            text+=" P ";
+            this.movingObject.moveVertically(0.2*this.speedFactor);
+            this.fish.moveVertically(0.2*this.speedFactor);
+            keysPressed=true;
+        }
+        if (this.gui.isKeyPressed("KeyL")) {
+            text+=" L ";
+            this.movingObject.moveVertically(-0.2*this.speedFactor);
+            this.fish.moveVertically(-0.2*this.speedFactor);
+            keysPressed=true;
+        }
         if (keysPressed) {
             console.log(text);
             this.movingObject.update();

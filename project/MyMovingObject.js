@@ -13,6 +13,9 @@ export class MyMovingObject extends CGFobject {
 		//object orientation, horizontaly - YY - angle
 		this.orientation = 0;
 		this.velocity = 0;
+		this.verticalVelocity = 0;
+		this.maxY = 5;
+		this.minY = -8.7;
 		this.position = {
 			x: 0,
 			y: 0,
@@ -24,6 +27,11 @@ export class MyMovingObject extends CGFobject {
 	update(){
 		this.scaleFactor = this.scene.scaleFactor;
 		this.position.x += this.velocity * Math.sin(this.orientation);
+		this.position.y += this.verticalVelocity;
+		if (this.position.y > this.maxY)
+			this.position.y = this.maxY;
+		else if (this.position.y < this.minY)
+			this.position.y = this.minY;		
 		this.position.z += this.velocity * Math.cos(this.orientation);
 	}
 	/*Changes orientation angle*/
@@ -33,6 +41,10 @@ export class MyMovingObject extends CGFobject {
 	/*Changes velocity value - val can be positive or negative*/
 	accelerate(val){
 		this.velocity += val;
+	}
+	/*Changes vertical position - val can be positive or negative*/
+	moveVertically(val){
+		this.verticalVelocity += val;
 	}
 	/*Replaces the object on the initial position without rotation nor velocity*/
 	reset(){
