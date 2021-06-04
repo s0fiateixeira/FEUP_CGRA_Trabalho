@@ -12,8 +12,11 @@ export class MyMovingObject extends CGFobject {
 		this.initBuffers();
 		//object orientation, horizontaly - YY - angle
 		this.orientation = 0;
-		this.velocity = 0;
-		this.verticalVelocity = 0;
+		this.previousOrientation = 0;
+		this.rightRotation = false;
+		this.leftRotation = false;
+		this.velocity = 0.0;
+		this.verticalVelocity = 0.0;
 		this.maxY = 5;
 		this.minY = -8.7;
 		this.position = {
@@ -33,10 +36,19 @@ export class MyMovingObject extends CGFobject {
 		else if (this.position.y < this.minY)
 			this.position.y = this.minY;		
 		this.position.z += this.velocity * Math.cos(this.orientation);
+		this.verticalVelocity = 0;
+		if (this.previousOrientation == this.orientation){
+			this.rightRotation = false;
+			this.leftRotation = false;
+		}
+		this.previousOrientation = this.orientation;
 	}
 	/*Changes orientation angle*/
 	turn(val){
-		this.orientation += val;
+		if (val > 0)
+			(this.rightRotation = true) && (this.leftRotation = false);
+		else (this.leftRotation = true) && (this.rightRotation = false);
+		this.orientation += val*0.05;
 	}
 	/*Changes velocity value - val can be positive or negative*/
 	accelerate(val){
@@ -49,7 +61,10 @@ export class MyMovingObject extends CGFobject {
 	/*Replaces the object on the initial position without rotation nor velocity*/
 	reset(){
 		this.orientation = 0;
-		this.velocity = 0;
+		this.velocity = 0.0;
+		this.verticalVelocity = 0.0;
+		this.rightRotation = false;
+		this.leftRotation = false;
 		this.position.x = 0;
 		this.position.y = 0;
 		this.position.z = 0;
