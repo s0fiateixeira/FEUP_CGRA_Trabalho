@@ -3,12 +3,12 @@ import { MySphere } from "./MySphere.js";
 import { MyMovingObject } from "./MyMovingObject.js";
 import { MyCubeMap } from "./MyCubeMap.js";
 import { MyCylinder } from "./MyCylinder.js";
-import { MyFish } from "./MyFish.js";
 import { MySeaFloor } from "./MySeaFloor.js";
 import { MyWater } from "./MyWater.js";
 import { MyPillar } from "./MyPillar.js";
 import { MyRockSet } from "./MyRockSet.js";
 import { MyAlgaeSet } from "./MyAlgaeSet.js";
+import { MyMovingFish } from "./MyMovingFish.js";
 
 /**
 * MyScene
@@ -41,7 +41,7 @@ export class MyScene extends CGFscene {
         this.movingObject = new MyMovingObject(this);
         this.cubeMap = new MyCubeMap(this);
         this.cylinder = new MyCylinder(this, 6);
-        this.fish = new MyFish(this);
+        this.fish = new MyMovingFish(this);
         this.sand = new MySeaFloor(this, 20);
         this.water = new MyWater(this, 20);
         this.pillar = new MyPillar(this);
@@ -114,31 +114,37 @@ export class MyScene extends CGFscene {
         if (this.gui.isKeyPressed("KeyW")) {
                 text+=" W ";
                 this.movingObject.accelerate(0.2*this.speedFactor);
+                this.fish.accelerate(0.2*this.speedFactor);
                 keysPressed=true;
         }
         if (this.gui.isKeyPressed("KeyS")) {
                 text+=" S ";
                 this.movingObject.accelerate(-0.2*this.speedFactor);
+                this.fish.accelerate(-0.2*this.speedFactor);
                 keysPressed=true;
         }
         if (this.gui.isKeyPressed("KeyA")) {
             text+=" A ";
             this.movingObject.turn(0.5);
+            this.fish.turn(0.5);
             keysPressed=true;
         }
         if (this.gui.isKeyPressed("KeyD")) {
             text+=" D ";
             this.movingObject.turn(-0.5);
+            this.fish.turn(-0.5);
             keysPressed=true;
         }
         if (this.gui.isKeyPressed("KeyR")) {
             text+=" R ";
             this.movingObject.reset();
+            this.fish.reset();
             keysPressed=true;
         }
         if (keysPressed) {
             console.log(text);
             this.movingObject.update();
+            this.fish.update();
         }
     }
 
