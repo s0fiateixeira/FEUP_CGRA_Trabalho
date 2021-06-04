@@ -48,7 +48,7 @@ export class MyMovingObject extends CGFobject {
 		if (val > 0)
 			(this.rightRotation = true) && (this.leftRotation = false);
 		else (this.leftRotation = true) && (this.rightRotation = false);
-		this.orientation += val*0.05;
+		this.orientation += val;
 	}
 	/*Changes velocity value - val can be positive or negative*/
 	accelerate(val){
