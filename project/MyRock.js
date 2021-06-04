@@ -12,8 +12,26 @@ export class MyRock extends CGFobject {
     this.latDivs = stacks * 2;
     this.longDivs = slices;
 
+    this.randomXPlacements = [];
+    this.randomYPlacements = [];
+    this.randomZPlacements = [];
+
+    for (var i = 0; i <= slices; i++){
+      this.randomXPlacement = Math.floor(Math.random() * 400);
+      this.randomXPlacement -= 200;
+      this.randomXPlacement /= 100;
+      this.randomXPlacements.push(this.randomXPlacement);
+      this.randomYPlacement = Math.floor(Math.random() * 400);
+      this.randomYPlacement -= 200;
+      this.randomYPlacement /= 100;
+      this.randomYPlacements.push(this.randomYPlacement);
+      this.randomZPlacement = Math.floor(Math.random() * 400);
+      this.randomZPlacement -= 200;
+      this.randomZPlacement /= 100;
+      this.randomZPlacements.push(this.randomZPlacement);
+    }
+
     this.initMaterials();
-    this.initTexture();
     this.initBuffers();
   }
   initMaterials() {
@@ -22,17 +40,7 @@ export class MyRock extends CGFobject {
     this.rockMaterial.setDiffuse(0.41, 0.41, 0.41, 1.0);
     this.rockMaterial.setSpecular(0, 0, 0, 1);
     this.rockMaterial.setShininess(100.0);
-}
-  initTexture() {
-    this.rockTexture = new CGFappearance(this.scene);
-    this.rockTexture.setAmbient(0.1, 0.1, 0.1, 1);
-    this.rockTexture.setDiffuse(0.9, 0.9, 0.9, 1);
-    this.rockTexture.setSpecular(0.1, 0.1, 0.1, 1);
-    this.rockTexture.setShininess(10.0);
-    this.rockTexture.loadTexture('images/earth.jpg');
-    this.rockTexture.setTextureWrap('REPEAT', 'REPEAT');
   }
-
   initBuffers() {
     this.vertices = [];
     this.indices = [];
@@ -60,9 +68,9 @@ export class MyRock extends CGFobject {
       textMapLongitude = 0;
       for (let longitude = 0; longitude <= this.longDivs; longitude++) {
         //--- Vertices coordinates
-        var x = Math.cos(theta) * sinPhi;
-        var y = cosPhi;
-        var z = Math.sin(-theta) * sinPhi;
+        var x = Math.cos(theta) * sinPhi * this.randomXPlacements[longitude];
+        var y = cosPhi * this.randomYPlacements[longitude];
+        var z = Math.sin(-theta) * sinPhi * this.randomZPlacements[longitude];
         this.vertices.push(x, y, z);
 
         //--- TexCoords
